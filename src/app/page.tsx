@@ -27,14 +27,14 @@ export default function Home() {
   }, [place, fetchWeather]);
 
   return (
-    <div className="container lg:px-48 mx-auto py-8 space-y-8">
+    <div className="container px-8 md:px-16 xl:px-48 mx-auto py-8 space-y-8">
       <Header />
-      <div className="grid grid-cols-12 space-x-16">
-        <main className="flex min-h-screen flex-col items-center space-y-16 col-span-8">
+      <div className="grid grid-cols-12 xl:space-x-12 gap-8 xl:gap-0">
+        <main className="flex xl:min-h-screen flex-col items-center xl:space-y-16 col-span-12 xl:col-span-7">
           <TodayWidget />
           {error && <div className="text-red-500">{error}</div>}
         </main>
-        <aside className="col-span-4 border-l border-gray-200 pl-16">
+        <aside className="col-span-12 xl:col-span-5 xl:border-l xl:border-gray-200 xl:pl-12">
           <ForecastWidget />
         </aside>
       </div>
