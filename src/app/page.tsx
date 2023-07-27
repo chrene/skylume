@@ -1,6 +1,6 @@
 'use client';
 
-import ForecastWidget from '@/components/forecast-widget/forecast-widget';
+import ForecastWidget from '@/components/forecast-widget';
 import Header from '@/components/header';
 import TodayWidget from '@/components/today-widget';
 import { useGeo } from '@/contexts/geo';
