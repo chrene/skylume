@@ -58,7 +58,7 @@ The Weather Context is responsible for managing weather data and forecasts. It f
 
 The app is divided into several components to manage different sections and functionalities:
 
-- **Header**: The header component that provides navigation and branding.
+- **Header**: The header component that provides navigation (searching for cities).
 - **TodayWidget**: Displays the current weather information for the user's location.
 - **ForecastWidget**: Shows detailed weather forecasts for the upcoming days.
 
