@@ -32,6 +32,11 @@ export const getHumanReadableWeekday = (date: string) => {
   return weekday;
 };
 
+export const getTimeOfDay = (dateString: string) => {
+  const isNight = new Date(dateString).getHours() > 18 || new Date(dateString).getHours() < 6;
+  return isNight ? 'night' : 'day';
+};
+
 export const getShortDate = (date: string) => {
   const formattedDate = new Date(date);
   return new Intl.DateTimeFormat('en-US', {

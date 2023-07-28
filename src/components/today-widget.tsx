@@ -1,7 +1,7 @@
 'use client';
 import { useGeo } from '@/contexts/geo';
 import { useWeather } from '@/contexts/weather';
-import { getHour } from '@/util/date-funcs';
+import { getHour, getTimeOfDay } from '@/util/date-funcs';
 import {
   mapWeatherCodeToIconName,
   mapWeatherInterpretation,
@@ -64,11 +64,11 @@ export default function TodayWidget() {
               <Image
                 src={`/icons/weather/animated/${mapWeatherCodeToIconName(
                   current.weatherCode,
-                  current.time
+                  getTimeOfDay(current.time)
                 )}.svg`}
                 width={48}
                 height={48}
-                alt={mapWeatherCodeToIconName(current.weatherCode, current.time)}
+                alt={mapWeatherCodeToIconName(current.weatherCode, getTimeOfDay(current.time))}
               />
               <div className="text-white text-sm">{Math.floor(current.temperature)}°</div>
             </div>
@@ -81,10 +81,13 @@ export default function TodayWidget() {
               <div key={time} className="flex flex-col shrink-0 gap-1 items-center p-2 rounded-xl">
                 <div className="text-white text-sm">{getHour(time)}</div>
                 <Image
-                  src={`/icons/weather/animated/${mapWeatherCodeToIconName(weatherCode, time)}.svg`}
+                  src={`/icons/weather/animated/${mapWeatherCodeToIconName(
+                    weatherCode,
+                    getTimeOfDay(time)
+                  )}.svg`}
                   width={48}
                   height={48}
-                  alt={mapWeatherCodeToIconName(weatherCode, time)}
+                  alt={mapWeatherCodeToIconName(weatherCode, getTimeOfDay(time))}
                 />
                 <div className="text-white text-sm">{temperature_2m}°</div>
               </div>

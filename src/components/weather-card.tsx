@@ -10,10 +10,7 @@ type WeatherCardProps = {
 };
 
 const WeatherCard = ({ date, temperature, weatherCode, weekday }: WeatherCardProps) => {
-  const weatherIconName = mapWeatherCodeToIconName(
-    weatherCode,
-    new Date(date).setHours(12, 0, 0, 0).toLocaleString()
-  );
+  const weatherIconName = mapWeatherCodeToIconName(weatherCode, 'day');
 
   return (
     <div className="flex xl:gap-3 xl:mt-3 border-b border-b-sky-900/10">

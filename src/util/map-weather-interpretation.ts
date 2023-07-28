@@ -36,15 +36,11 @@ export function mapWeatherInterpretation(code: number): string {
   return weatherMap[code] || 'Unknown';
 }
 
-export function mapWeatherCodeToIconName(code: number, time: string): string {
-  console.log(time);
-  const isNight = new Date(time).getHours() > 18 || new Date(time).getHours() < 6;
-  console.log(new Date(time).getHours());
-  const timeOfDay = isNight ? 'night' : 'day';
+export function mapWeatherCodeToIconName(code: number, timeOfDay: 'day' | 'night'): string {
   const weatherMap: { [key: number]: string } = {
-    0: isNight ? 'day' : 'night',
-    1: isNight ? 'day' : 'night',
-    2: isNight ? 'day' : 'night',
+    0: timeOfDay,
+    1: timeOfDay,
+    2: timeOfDay,
     3: `cloudy-${timeOfDay}-3`,
     45: `cloudy-${timeOfDay}-3`,
     48: `cloudy-${timeOfDay}-3`,
