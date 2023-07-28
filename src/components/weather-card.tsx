@@ -1,14 +1,20 @@
 import { getShortDate } from '@/util/date-funcs';
+import { mapWeatherCodeToIconName } from '@/util/map-weather-interpretation';
 import Image from 'next/image';
 
 type WeatherCardProps = {
   date: string;
   temperature: number;
-  weatherIconName: string;
+  weatherCode: number;
   weekday: string;
 };
 
-const WeatherCard = ({ date, temperature, weatherIconName, weekday }: WeatherCardProps) => {
+const WeatherCard = ({ date, temperature, weatherCode, weekday }: WeatherCardProps) => {
+  const weatherIconName = mapWeatherCodeToIconName(
+    weatherCode,
+    new Date(date).setHours(12, 0, 0, 0).toLocaleString()
+  );
+
   return (
     <div className="flex xl:gap-3 xl:mt-3 border-b border-b-sky-900/10">
       <div className="grid grid-cols-12 w-full items-center">

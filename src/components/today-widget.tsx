@@ -42,7 +42,7 @@ export default function TodayWidget() {
             {current ? `${Math.floor(Number(current?.temperature))}°` : '--'}
           </div>
           <div className="text-white text-sm">
-            {current ? mapWeatherInterpretation(current?.weathercode) : '--'}
+            {current ? mapWeatherInterpretation(current?.weatherCode) : '--'}
           </div>
         </div>
         <div className="flex gap-4">
@@ -60,28 +60,31 @@ export default function TodayWidget() {
               key={current.time}
               className="flex flex-col shrink-0 gap-1 items-center bg-sky-300/30 p-2 rounded-xl"
             >
-              <div className="text-white text-sm">{getHour(current.time)}</div>
+              <div className="text-white text-sm">{'Now'}</div>
               <Image
-                src={`/icons/weather/animated/${mapWeatherCodeToIconName(current.weathercode)}.svg`}
+                src={`/icons/weather/animated/${mapWeatherCodeToIconName(
+                  current.weatherCode,
+                  current.time
+                )}.svg`}
                 width={48}
                 height={48}
-                alt={mapWeatherCodeToIconName(current.weathercode)}
+                alt={mapWeatherCodeToIconName(current.weatherCode, current.time)}
               />
-              <div className="text-white text-sm">{current.temperature}°</div>
+              <div className="text-white text-sm">{Math.floor(current.temperature)}°</div>
             </div>
           )}
 
           {hourly
             ?.filter(({ time }) => new Date(time) >= new Date())
             .slice(0, 24)
-            .map(({ time, temperature_2m, weathercode }) => (
+            .map(({ time, temperature_2m, weatherCode }) => (
               <div key={time} className="flex flex-col shrink-0 gap-1 items-center p-2 rounded-xl">
                 <div className="text-white text-sm">{getHour(time)}</div>
                 <Image
-                  src={`/icons/weather/animated/${mapWeatherCodeToIconName(weathercode)}.svg`}
+                  src={`/icons/weather/animated/${mapWeatherCodeToIconName(weatherCode, time)}.svg`}
                   width={48}
                   height={48}
-                  alt={mapWeatherCodeToIconName(weathercode)}
+                  alt={mapWeatherCodeToIconName(weatherCode, time)}
                 />
                 <div className="text-white text-sm">{temperature_2m}°</div>
               </div>

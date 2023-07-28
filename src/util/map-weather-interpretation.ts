@@ -36,55 +36,41 @@ export function mapWeatherInterpretation(code: number): string {
   return weatherMap[code] || 'Unknown';
 }
 
-export function mapWeatherCodeToIconName(code: number): string {
+export function mapWeatherCodeToIconName(code: number, time: string): string {
+  console.log(time);
+  const isNight = new Date(time).getHours() > 18 || new Date(time).getHours() < 6;
+  console.log(new Date(time).getHours());
+  const timeOfDay = isNight ? 'night' : 'day';
   const weatherMap: { [key: number]: string } = {
-    0: 'night',
-    1: 'day',
-    2: 'cloudy-night-3',
-    3: 'cloudy-day-3',
-    4: 'not-used',
-    5: 'cloudy-day-3',
-    6: 'cloudy-day-3',
-    7: 'cloudy-day-3',
-    8: 'cloudy-day-3',
-    9: 'rainy-6',
-    10: 'rainy-3',
-    11: 'rainy-5',
-    12: 'rainy-5',
-    13: 'rainy-6',
-    14: 'rainy-3',
-    15: 'rainy-6',
-    16: 'rainy-7',
-    17: 'rainy-7',
-    18: 'rainy-7',
-    19: 'rainy-7',
-    20: 'rainy-7',
-    21: 'rainy-7',
-    22: 'snowy-4',
-    23: 'showy-2',
-    24: 'snowy-4',
-    25: 'showy-6',
-    26: 'snowy-3',
-    27: 'snowy-6',
-    28: 'thunder',
-    29: 'thunder',
-    30: 'thunder',
+    0: isNight ? 'day' : 'night',
+    1: isNight ? 'day' : 'night',
+    2: isNight ? 'day' : 'night',
+    3: `cloudy-${timeOfDay}-3`,
+    45: `cloudy-${timeOfDay}-3`,
+    48: `cloudy-${timeOfDay}-3`,
+    51: `cloudy-${timeOfDay}-3`,
+    53: `cloudy-${timeOfDay}-3`,
+    55: `cloudy-${timeOfDay}-3`,
+    56: 'rainy-7',
+    57: 'rainy-7',
+    61: 'rainy-1',
+    63: 'rainy-2',
+    65: 'rainy-3',
+    66: 'rainy-7',
+    67: 'rainy-7',
+    71: 'snowy-4',
+    73: 'snowy-5',
+    75: 'snowy-6',
+    77: 'snowy-6',
+    80: 'rainy-4',
+    81: 'rainy-5',
+    82: 'rainy-6',
+    85: 'snowy-5',
+    86: 'snowy-6',
+    95: 'thunder',
+    96: 'thunder',
+    99: 'thunder',
   };
-
-  // Drizzle
-  if (code >= 50 && code <= 59) {
-    return weatherMap[11];
-  }
-
-  // Rain
-  if ((code >= 60 && code <= 69) || (code >= 80 && code <= 99)) {
-    return weatherMap[12];
-  }
-
-  // Snow
-  if (code >= 70 && code <= 79) {
-    return weatherMap[24];
-  }
 
   return weatherMap[code] || `unknown ${code}`;
 }

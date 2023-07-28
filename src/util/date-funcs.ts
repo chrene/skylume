@@ -1,7 +1,19 @@
+const startOfDay = (date: Date) => {
+  const newDate = new Date(date);
+  newDate.setHours(0, 0, 0, 0);
+  return newDate;
+};
+
+export const isToday = (date: string) => {
+  const today = startOfDay(new Date());
+  const localeDate = startOfDay(new Date(date));
+  return today.getTime() === localeDate.getTime();
+};
+
 export const getHumanReadableWeekday = (date: string) => {
-  const localeDate = new Date(date);
-  const today = new Date();
-  const tomorrow = new Date(today);
+  const localeDate = startOfDay(new Date(date));
+  const today = startOfDay(new Date());
+  const tomorrow = startOfDay(new Date(today));
   tomorrow.setDate(today.getDate() + 1);
 
   const oneDay = 24 * 60 * 60 * 1000;

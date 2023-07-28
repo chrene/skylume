@@ -5,14 +5,14 @@ export interface DailyForecast {
   temperature_2m_max: number;
   temperature_2m_min: number;
   time: string;
-  weathercode: number;
+  weatherCode: number;
   weekday: string;
 }
 
 export interface HourlyForecast {
   temperature_2m: number;
   time: string;
-  weathercode: number;
+  weatherCode: number;
   weekday: string;
 }
 
@@ -21,7 +21,7 @@ export interface Weather {
     is_day: number;
     temperature: number;
     time: string;
-    weathercode: number;
+    weatherCode: number;
     winddirection: number;
     windspeed: number;
   };

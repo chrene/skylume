@@ -1,4 +1,4 @@
-import { getHumanReadableWeekday } from '@/util/date-funcs';
+import { getHumanReadableWeekday, isToday } from '@/util/date-funcs';
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -16,14 +16,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           hourly: 'temperature_2m,weathercode',
           daily: 'weathercode,temperature_2m_max,temperature_2m_min',
           timezone: 'auto',
-          forecast_days: 7,
+          forecast_days: 8,
           current_weather: true,
         },
       });
 
       return res.status(200).json({
-        current: result.data.current_weather,
-        daily: mapDailyData(result.data),
+        current: {
+          ...result.data.current_weather,
+          weatherCode: result.data.current_weather.weathercode,
+        },
+        daily: mapDailyData(result.data).filter((item) => !isToday(item.time)),
         hourly: mapHourlyData(result.data),
       });
     } catch (err) {
@@ -54,7 +57,7 @@ function mapDailyData(input: {
   for (let i = 0; i < minLength; ++i) {
     mappedData.push({
       temperature_2m_max: Math.floor(temperature_2m_max[i]),
-      weathercode: weathercode[i],
+      weatherCode: weathercode[i],
       time: time[i],
       weekday: getHumanReadableWeekday(time[i]),
     });
@@ -78,7 +81,7 @@ function mapHourlyData(input: {
   for (let i = 0; i < minLength; i++) {
     mappedData.push({
       temperature_2m: Math.floor(temperature_2m[i]),
-      weathercode: weathercode[i],
+      weatherCode: weathercode[i],
       time: time[i],
       weekday: getHumanReadableWeekday(time[i]),
     });

@@ -7,13 +7,13 @@ export default function ForecastWidget() {
   const { daily } = weather || {};
   return (
     <div className="bg-sky-50 px-12 py-4 xl:px-6 xl:py-3 rounded-xl">
-      {daily?.map(({ temperature_2m_max, weathercode, time, weekday }) => (
+      {daily?.map(({ temperature_2m_max, weatherCode, time, weekday }) => (
         <WeatherCard
           key={time}
           date={time}
           weekday={weekday}
           temperature={temperature_2m_max}
-          weatherIconName={mapWeatherCodeToIconName(weathercode)}
+          weatherCode={weatherCode}
         />
       ))}
     </div>
