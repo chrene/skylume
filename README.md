@@ -72,6 +72,9 @@ The Weather Forecast App interacts with the following external APIs:
 
 - **IP Location API**: Retrieves the user's geographical location based on their IP address. API endpoint: [https://ipapi.co/json](https://ipapi.co/json)
 
+## Acknowledgements
+Static and animated icon pack created by [amCharts](https://www.amcharts.com/free-animated-svg-weather-icons)
+
 ## License
 
 This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE) file.
